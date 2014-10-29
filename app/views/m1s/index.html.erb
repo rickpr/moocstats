@@ -1,0 +1,29 @@
+<h1>Listing m1s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>One</th>
+      <th>Two</th>
+      <th>Quiz</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @m1s.each do |m1| %>
+      <tr>
+        <td><%= m1.one %></td>
+        <td><%= m1.two %></td>
+        <td><%= m1.quiz %></td>
+        <td><%= link_to 'Show', m1 %></td>
+        <td><%= link_to 'Edit', edit_m1_path(m1) %></td>
+        <td><%= link_to 'Destroy', m1, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New M1', new_m1_path %>

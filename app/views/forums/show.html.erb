@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @forum.total %>
+</p>
+
+<p>
+  <strong>Web app arch ii:</strong>
+  <%= @forum.web_app_arch_ii %>
+</p>
+
+<p>
+  <strong>General discussion:</strong>
+  <%= @forum.general_discussion %>
+</p>
+
+<p>
+  <strong>Study groups:</strong>
+  <%= @forum.study_groups %>
+</p>
+
+<p>
+  <strong>Lectures:</strong>
+  <%= @forum.lectures %>
+</p>
+
+<p>
+  <strong>Assignments:</strong>
+  <%= @forum.assignments %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @forum.student %>
+</p>
+
+<%= link_to 'Edit', edit_forum_path(@forum) %> |
+<%= link_to 'Back', forums_path %>

@@ -1,0 +1,31 @@
+<h1>Listing m2s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>One</th>
+      <th>Two</th>
+      <th>Three</th>
+      <th>Quiz</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @m2s.each do |m2| %>
+      <tr>
+        <td><%= m2.one %></td>
+        <td><%= m2.two %></td>
+        <td><%= m2.three %></td>
+        <td><%= m2.quiz %></td>
+        <td><%= link_to 'Show', m2 %></td>
+        <td><%= link_to 'Edit', edit_m2_path(m2) %></td>
+        <td><%= link_to 'Destroy', m2, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New M2', new_m2_path %>

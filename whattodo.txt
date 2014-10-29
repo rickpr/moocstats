@@ -1,0 +1,195 @@
+Student Attributes{
+Cid
+grade
+result
+In Signature Track [sigtrack]
+group
+}
+
+Quizzes{ [references student]
+  Getting to know you [survey]
+  Module 1 { [references quizzes],[m1]
+    Module 1 Quiz, Lectures 1-2 [one]
+    Module 1 Quiz, Lectures 3-4 [two]
+  }
+  Module 2 { [references quizzes],[m2]
+    Module 2 Quiz, Lectures 1-2 [one]
+    Module 2 Quiz, Lectures 3-4 [two]
+    Module 2 Quiz, Lectures 5-6 [three]
+  }
+  Module 3 { [references quizzes],[m3]
+    Module 3 Quiz, Lectures 1-2 [one]
+    Module 3 Quiz, Lectures 3-5 [two]
+  }
+  Module 4 { [references quizzes],[m4]
+    Module 4 Quiz, Lectures 1-2 [one]
+    Module 4 Quiz, Lectures 3-4 [two]
+    Module 4 Quiz, Lectures 5-6 [three]
+  }
+  Module 5 { [references quizzes],[m5]
+    Module 5 Quiz, Lectures 1-3 [one]
+    Module 5 Quiz, Lectures 4-6 [two]
+    Module 5 Quiz, Lectures 7-8 [three]
+  }
+  Module 6 { [references quizzes],[m6]
+    Module 6 Quiz, Lectures 1-2 [one]
+    Module 6 Quiz, Lectures 3-4 [two]
+    Module 6 Quiz, Lectures 5-6 [three]
+    Module 6 Quiz, Lectures 7-8 [four]
+  }
+}
+
+Programming Assignments{ [references student],[program]
+  Programming Assignment 1 [one]
+  Programming Assignment 2 [two]
+  Programming Assignment 3 [three]
+  Programming Assignment 4 [four]
+}
+Forum Posts{ [references student],[post]
+Number of forum posts [posts]
+Number of forum post upvotes [upvotes]
+}
+
+Forum Comments{ [references student],[comment]
+Number of forum comments [comments]
+Number of forum comment upvotes [upvotes]
+}
+
+Subforum Activity{ [references student],[forum]
+  Total Posts and Comments [total]
+  web_app_arch_ii
+  general_discussion
+  study_groups
+  lectures
+  assignments
+}
+Google+{ [references student],[google]
+  Member [member]
+  E-mails to tutor [email
+}
+Experiment { [references student] }
+Reminder { [references student] }
+Control { [references student] }
+
+rails g scaffold quiz survey student:references
+rails g scaffold m1 one two quiz:references
+rails g scaffold m2 one two three quiz:references
+rails g scaffold m3 one two quiz:references
+rails g scaffold m4 one two three quiz:references
+rails g scaffold m5 one two three quiz:references
+rails g scaffold m6 one two three four quiz:references
+rails g scaffold program one two three four student:references
+rails g scaffold post posts upvotes student:references
+rails g scaffold comment comments upvotes student:references
+rails g scaffold forum total web_app_arch_ii general_discussion study_groups lectures assignments student:references
+rails g scaffold google member email student:references
+rails g scaffold experiment student:references
+rails g scaffold reminder student:references
+rails g scaffold controlgroup student:references
+
+cid
+survey
+m11
+m12
+m21
+m22
+m23
+m31
+m32
+m41
+m42
+m43
+m51
+m52
+m53
+m61
+m62
+m63
+m64
+p1
+p2
+p3
+p4
+posts
+comments
+postupvotes
+commentupvotes
+total
+web_app_arch_ii
+general_discussion
+study_groups
+lectures
+assignments
+grade
+result
+sigtrack
+
+wholedatabase=SmarterCSV.process("database.csv")
+
+wholedatabase.each do |d|
+  Student.create(cid: d[:cid], grade: d[:grade], result: d[:result], sigtrack: d[:sigtrack])
+  current_student=Student.find_by_cid(d[:cid]).id
+  Quiz.create(survey: d[:survey], student_id: current_student)
+  current_quiz=Student.find_by_id(current_student).quiz.id
+  M1.create(one: d[:m11], two: d[:m12], quiz_id: current_quiz)
+  M2.create(one: d[:m21], two: d[:m22], three: d[:m23], quiz_id: current_quiz)
+  M3.create(one: d[:m31], two: d[:m32], quiz_id: current_quiz)
+  M4.create(one: d[:m41], two: d[:m42], three: d[:m43], quiz_id: current_quiz)
+  M5.create(one: d[:m51], two: d[:m52], three: d[:m53], quiz_id: current_quiz)
+  M6.create(one: d[:m61], two: d[:m62], three: d[:m63], four: d[:m64], quiz_id: current_quiz)
+  Program.create(one: d[:p1], two: d[:p2], three: d[:p3], four: d[:p4], student_id: current_student)
+  Post.create(posts: d[:posts], upvotes: d[:postupvotes], student_id: current_student)
+  Comment.create(comments: d[:comments], upvotes: d[:commentupvotes], student_id: current_student)
+  Forum.create(total: d[:total], web_app_arch_ii: d[:web_app_arch_ii], general_discussion: d[:general_discussion], study_groups: d[:study_groups], lectures: 
+
+d[:lectures], assignments: d[:assignments], student_id: current_student)
+end
+
+frooglers=SmarterCSV.process("gplus.csv")
+
+frooglers.each do |g|
+  current_student=Student.find_by_cid(g[:cid]).id
+  Googler.create(email: g[:email], member: g[:member], student_id: current_student)
+end
+
+xperiments=SmarterCSV.process("experiment.csv")
+
+xperiments.each do |e|
+  current_student=Student.find_by_cid(e[:cid]).id
+  Experiment.create(student_id: current_student) 
+end
+
+ribbons=SmarterCSV.process("innocuous.csv")
+
+ribbons.each do |i|
+  current_student=Student.find_by_cid(i[:cid]).id
+  Reminder.create(student_id: current_student) 
+end
+
+kontrols=SmarterCSV.procss("control.csv")
+
+kontrols.each do |c|
+  current_student=Student.find_by_cid(c[:cid]).id
+  Controlgroup.create(student_id: current_student)
+end
+
+
+
+---DON'T DO THESE THINGS UNLESS THERE IS EXTRA TIME--
+experiments=SmarterCSV.process("experiment.csv")
+
+experiments.each do |e|
+  Student.find_by_cid(e[:cid]).update(group: "experiment")
+end
+
+innocuous=SmarterCSV.process("innocuous.csv")
+
+innocuous.each do |i|
+  Student.find_by_cid(i[:cid]).update(group: "innocuous")
+end
+
+controls=SmarterCSV.process("control.csv")
+
+controls.each do |c|
+  Student.find_by_cid(c[:cid]).update(group: "control")
+end

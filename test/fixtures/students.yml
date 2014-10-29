@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cid: MyString
+  grade: MyString
+  result: MyString
+  sigtrack: MyString
+  group: MyString
+
+two:
+  cid: MyString
+  grade: MyString
+  result: MyString
+  sigtrack: MyString
+  group: MyString

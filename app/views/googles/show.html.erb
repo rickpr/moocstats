@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Member:</strong>
+  <%= @google.member %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @google.email %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @google.student %>
+</p>
+
+<%= link_to 'Edit', edit_google_path(@google) %> |
+<%= link_to 'Back', googles_path %>

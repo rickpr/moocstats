@@ -1,0 +1,33 @@
+<%= form_for(@m5) do |f| %>
+  <% if @m5.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m5.errors.count, "error") %> prohibited this m5 from being saved:</h2>
+
+      <ul>
+      <% @m5.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :one %><br>
+    <%= f.text_field :one %>
+  </div>
+  <div class="field">
+    <%= f.label :two %><br>
+    <%= f.text_field :two %>
+  </div>
+  <div class="field">
+    <%= f.label :three %><br>
+    <%= f.text_field :three %>
+  </div>
+  <div class="field">
+    <%= f.label :quiz_id %><br>
+    <%= f.text_field :quiz_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

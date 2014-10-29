@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: MyString
+  web_app_arch_ii: MyString
+  general_discussion: MyString
+  study_groups: MyString
+  lectures: MyString
+  assignments: MyString
+  student_id: 
+
+two:
+  total: MyString
+  web_app_arch_ii: MyString
+  general_discussion: MyString
+  study_groups: MyString
+  lectures: MyString
+  assignments: MyString
+  student_id: 

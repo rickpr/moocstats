@@ -1,0 +1,33 @@
+<h1>Listing m6s</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>One</th>
+      <th>Two</th>
+      <th>Three</th>
+      <th>Four</th>
+      <th>Quiz</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @m6s.each do |m6| %>
+      <tr>
+        <td><%= m6.one %></td>
+        <td><%= m6.two %></td>
+        <td><%= m6.three %></td>
+        <td><%= m6.four %></td>
+        <td><%= m6.quiz %></td>
+        <td><%= link_to 'Show', m6 %></td>
+        <td><%= link_to 'Edit', edit_m6_path(m6) %></td>
+        <td><%= link_to 'Destroy', m6, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New M6', new_m6_path %>
