@@ -1,0 +1,81 @@
+Forum Posts = 28
+Forum Comments = 29
+Forum post upvotes = 30
+Forum comment upvotes = 31
+
+Number of posts and comments in categories:
+Web Apps II: 33
+General Discussion: 34
+Study Groups: 35
+Lectures: 36
+Assignments: 37
+
+Grade = 39
+Result = 40
+
+For each Coursera, how did 28 relate to 39 (& 40)?
+
+How to get Schema:
+
+counter = 0
+SmarterCSV.process("schema.csv")[0].each do |schema|
+  $schema[counter]=schema[0]
+  counter += 1
+end
+schema=$schema
+redis=$redis
+
+TO CORRELATE:
+xsquared = 0
+ysquared = 0
+sumx = 0
+sumy = 0
+xtimesy = 0
+upcounter = 0
+Coursera.all.each do |coursera|
+  x=$redis.hmget(coursera.cid, schema[37])[0].to_f
+  y=$redis.hmget(coursera.cid, schema[39])[0].to_f
+  sumx += x
+  sumy += y
+  xsquared += x*x
+  ysquared += y*y
+  xtimesy += x*y
+  upcounter += 1
+end
+sxx=xsquared-((sumx)**2.0/upcounter)
+syy=ysquared-((sumy)**2.0/upcounter)
+sxy=xtimesy-((sumx)*(sumy)/upcounter)
+correl = sxy/((sxx*syy)**(0.5))
+
+Forum Posts
+ 0.18163831365305394
+Forum Comments
+ 0.15357539615380478
+Forum Post Upvotes
+ 0.11837289808579123
+Forum Comment Upvotes
+ 0.11667406359627511
+Posts in Web Apps II
+ 0.10229981118906174
+Posts in General Discussion
+ 0.10513623535972075
+Posts in Study Groups
+ 0.08556105752249171
+Posts in Lectures
+ 0.10184232073417339
+Posts in Assignments
+ 0.1718372881730477
+
+List of students by Coursera ID who were in the Google+ group
+If possible, who commented, or +1'd anything or visited a page
+Use e-mail statistics to estimate how many people visited without actually joining the group
+How many overall page visits
+
+Other stuff:
+Data from Coursera, demographic stuff, background etc.
+Check out the welcome survey as well
+
+Send Dan a Spreadsheet:
+Cid and score
+
+Check out the Latex template for the WWW Conference (ACM)
