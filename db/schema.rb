@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029204527) do
+ActiveRecord::Schema.define(version: 20141029220125) do
 
   create_table "comments", force: true do |t|
     t.string   "comments"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141029204527) do
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "member"
   end
 
   add_index "controlgroups", ["student_id"], name: "index_controlgroups_on_student_id"
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141029204527) do
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "member"
   end
 
   add_index "experiments", ["student_id"], name: "index_experiments_on_student_id"
@@ -163,6 +165,7 @@ ActiveRecord::Schema.define(version: 20141029204527) do
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "member"
   end
 
   add_index "reminders", ["student_id"], name: "index_reminders_on_student_id"
